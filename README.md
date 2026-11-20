@@ -1,5 +1,5 @@
-<img width="1920" height="1080" alt="Screenshot 2026-11-13 195725" src="https://github.com/user-attachments/assets/72a0a7fa-82fb-4963-94db-e2929437f23f" />
-<img width="1920" height="1080" alt="Screenshot 2026-11-13 195734" src="https://github.com/user-attachments/assets/6f31a06d-0ae2-456b-aa83-2f35b920acc5" />
-<img width="1920" height="1080" alt="Screenshot 2026-11-13 195854" src="https://github.com/user-attachments/assets/82e62ec0-c428-4cc7-b3ce-364289fb03b9" />
-<img width="1920" height="1080" alt="Screenshot 2026-11-13 195901" src="https://github.com/user-attachments/assets/98f993d5-466b-4347-8c93-a9e65903fe14" />
-<img width="1920" height="1080" alt="Screenshot 2026-11-13 200027" src="https://github.com/user-attachments/assets/bcb0c57b-d5a8-44c0-8250-d967b38be26f" />
+CREATE: <img width="1920" height="1080" alt="CREATE" src="https://github.com/user-attachments/assets/97a802cc-faf8-4807-8cb2-2e7694517301" />
+AFTER CREATE: <img width="1920" height="1080" alt="AFTER CREATE" src="https://github.com/user-attachments/assets/eb9e9108-f59a-4610-b9f9-157f9a93ba3f" />
+EDIT: <img width="1920" height="1080" alt="EDIT" src="https://github.com/user-attachments/assets/75843b36-9280-4a5f-8552-9afa70a7e4e0" />
+UPDATE: <img width="1920" height="1080" alt="UPDATE" src="https://github.com/user-attachments/assets/c8ab4da5-b773-41e9-8359-d1528683be8d" />
+DELETE: <img width="1920" height="1080" alt="DELETE" src="https://github.com/user-attachments/assets/086761c0-24d4-4abf-922b-68815dfc48a1" />

@@ -1,5 +1,6 @@
 package com.example.myapplication.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,22 +30,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.R
-import com.example.myapplication.room.Siswa
-import com.example.myapplication.uicontroller.DestinasiHome
+import com.example.myapplication.data.Siswa
+import com.example.myapplication.view.route.DestinasiHome
 import com.example.myapplication.viewmodel.HomeViewModel
-import com.example.myapplication.viewmodel.PenyediaViewModel
+import com.example.myapplication.viewmodel.provider.PenyediaViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
+    //edit 1
+    navigateToItemUpdate: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
-) {
+){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     Scaffold(
@@ -64,14 +66,16 @@ fun HomeScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = stringResource(R.string.entry_siswa)
+                    contentDescription = stringResource(id = R.string.entry_siswa)
                 )
             }
-        }
+        },
     ) { innerPadding ->
         val homeUiState by viewModel.homeUiState.collectAsState()
         BodyHome(
-            listSiswa = homeUiState.listSiswa,
+            homeUiState = homeUiState.listSiswa,
+            //edit 2
+            onSiswaClick = navigateToItemUpdate,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -81,22 +85,24 @@ fun HomeScreen(
 
 @Composable
 fun BodyHome(
-    listSiswa: List<Siswa>,
+    homeUiState: List<Siswa>,
+    onSiswaClick: (Int) -> Unit,
     modifier: Modifier = Modifier
-) {
+){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
-        if (listSiswa.isEmpty()) {
+        if (homeUiState.isEmpty()) {
             Text(
-                text = stringResource(R.string.deskripsi_no_item),
-                textAlign = TextAlign.Center,
+                text = stringResource(id = R.string.deskripsi_no_item),
                 style = MaterialTheme.typography.titleLarge
             )
         } else {
             ListSiswa(
-                listSiswa = listSiswa,
+                itemSiswa = homeUiState,
+                //edit 3
+                onSiswaClick = { onSiswaClick(it.id) },
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small))
             )
         }
@@ -105,16 +111,17 @@ fun BodyHome(
 
 @Composable
 fun ListSiswa(
-    listSiswa: List<Siswa>,
+    itemSiswa: List<Siswa>,
+    onSiswaClick: (Siswa) -> Unit,
     modifier: Modifier = Modifier
-) {
-    LazyColumn(modifier = modifier) {
-        items(items = listSiswa, key = { it.id }) { siswa ->
+){
+    LazyColumn(modifier = modifier){
+        items(items = itemSiswa, key = { it.id }) { person ->
             DataSiswa(
-                siswa = siswa,
+                siswa = person,
                 modifier = Modifier
-                    .fillMaxWidth()
                     .padding(dimensionResource(id = R.dimen.padding_small))
+                    .clickable { onSiswaClick(person) }
             )
         }
     }
@@ -124,7 +131,7 @@ fun ListSiswa(
 fun DataSiswa(
     siswa: Siswa,
     modifier: Modifier = Modifier
-) {
+){
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)

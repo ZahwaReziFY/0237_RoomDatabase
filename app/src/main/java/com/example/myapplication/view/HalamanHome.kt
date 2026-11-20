@@ -33,7 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.R
-import com.example.myapplication.data.Siswa
+import com.example.myapplication.room.Siswa
 import com.example.myapplication.view.route.DestinasiHome
 import com.example.myapplication.viewmodel.HomeViewModel
 import com.example.myapplication.viewmodel.provider.PenyediaViewModel
